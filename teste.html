@@ -1,0 +1,689 @@
+<html lang="pt-BR">
+
+<head>
+    <title>Nice</title>
+    <script>
+
+    </script>
+</head>
+<body>
+<form name="frm">
+    <input type="hidden" name="hdd_in_substituto_trib_tom" value="0">
+    <input type="hidden" name="hdd_in_retido_not" value="0">
+    <input type="hidden" name="hdd_in_liminar_pre" value="0">
+    <input type="hidden" name="hdd_in_base_reduzida_not" value="N">
+    <input type="hidden" name="hdd_in_nfdiaria_pre" value="0">
+    <input type="hidden" name="hdd_confirm_gera" value="N">
+    <table align="center" cellpadding="0" cellspacing="1" border="0">
+        <tbody>
+        <tr>
+            <td><font face="verdana" color="darkblue"><b>PRESTADOR</b>&nbsp;&nbsp;</font></td>
+            <td>Raz�o Social/Nome</td>
+            <td colspan="2"><b><span id="nm_razao_social">EDIDABLE TECNOLOGIA LTDA</span></b></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Nome de Fantasia</td>
+            <td colspan="2"><b><span id="nm_fantasia">EDIDABLE</span></b></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Inscri��o Municipal</td>
+            <td><b>4782577</b></td>
+            <td rowspan="2" id="info"
+                style="font-family: arial; font-size: 11px; text-align: center; color: lightgrey; font-weight: normal; background-color: white;">
+                Posicione o mouse sobre um campo para ajuda
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>CNPJ/CPF</td>
+            <td><b><span id="nr_cnpj">32.999.721/0001-43</span></b></td>
+        </tr>
+
+        <input type="hidden" name="txt_numero_rps_not" value="">
+        <input type="hidden" name="txt_numero_substituida_not" value="">
+
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="4" bgcolor="#DDDDDD"></td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td><font face="verdana" color="darkblue"><b>TOMADOR</b></font></td>
+            <td>Identifica��o</td>
+            <td colspan="2" nowrap="">
+                <select name="sel_cnpj_cpf_tom" style="font-size:11px"
+                        onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                    <option value="F">CPF</option>
+                    <option value="J" selected="">CNPJ</option>
+                </select>
+                <input type="text" size="18" maxlength="14" name="txt_cnpj_cpf_tom" class="txt"
+                       onkeypress="return parent.gbl.sonum2(event)"
+                       onchange="document.frm.hdd_in_substituto_trib_tom.value='0';document.frm.hdd_in_retido_not.value='0'"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'"
+                       style="background-color: white;">
+                <input type="button" style="font-size:11px" value="Consultar" onclick="consultar_tomador_cnpjcpf()">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Inscri��o Municipal em Goi�nia&nbsp;
+                <input type="text" size="8" maxlength="7" name="txt_inscr_municipal_tom" class="txt"
+                       onkeypress="return parent.gbl.sonum2(event)"
+                       onchange="document.frm.hdd_in_substituto_trib_tom.value='0';document.frm.hdd_in_retido_not.value='0'"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="if(this.value==''){document.frm.hdd_in_substituto_trib_tom.value='0';document.frm.hdd_in_retido_not.value='0';document.getElementById('situacaoST').innerHTML=''};this.style.backgroundColor='white'">
+                <input type="button" style="font-size:11px" value="Consultar" onclick="consultar_tomador_inscr()">
+                <input type="button" style="font-size:11px" value="Limpar Tomador" onclick="limpa_tomador()">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td nowrap="">Nome</td>
+            <td colspan="2"><input type="text" size="70" maxlength="50" name="txt_razao_nome_tom" class="txt"
+                                   onkeypress="return parent.gbl.sonumletra2(event)"
+                                   onchange="if(document.frm.sel_cnpj_cpf_tom.value=='F')document.frm.txt_inscr_municipal_tom.value=''"
+                                   onfocus="this.style.backgroundColor='lightyellow'"
+                                   onblur="this.value=acerta_texto(this.value);this.style.backgroundColor='white'"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Endere�o</td>
+            <td colspan="2">
+                <input type="text" size="40" maxlength="30" name="txt_endereco_tom" class="txt"
+                       onkeypress="return parent.gbl.sonumletra2(event)"
+                       onchange="if(document.frm.sel_cnpj_cpf_tom.value=='F')document.frm.txt_inscr_municipal_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="this.value=acerta_texto(this.value);this.style.backgroundColor='white'">
+                &nbsp;&nbsp;&nbsp;N�mero&nbsp;
+                <input type="text" size="6" maxlength="5" name="txt_numero_tom" class="txt"
+                       onkeypress="return parent.gbl.sonum()"
+                       onchange="if(document.frm.sel_cnpj_cpf_tom.value=='F')document.frm.txt_inscr_municipal_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="this.value=acerta_texto(this.value);this.style.backgroundColor='white'">
+                &nbsp;&nbsp;&nbsp;Complemento&nbsp;
+                <input type="text" size="30" maxlength="27" name="txt_complemento_tom" class="txt"
+                       onkeypress="return parent.gbl.sonumletra2(event)"
+                       onchange="if(document.frm.sel_cnpj_cpf_tom.value=='F')document.frm.txt_inscr_municipal_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="this.value=acerta_texto(this.value);this.style.backgroundColor='white'">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Bairro</td>
+            <td colspan="2">
+                <input type="text" size="30" maxlength="25" name="txt_bairro_tom" class="txt"
+                       onkeypress="return parent.gbl.sonumletra2(event)"
+                       onchange="if(document.frm.sel_cnpj_cpf_tom.value=='F')document.frm.txt_inscr_municipal_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="this.value=acerta_texto(this.value);this.style.backgroundColor='white'">
+                &nbsp;&nbsp;CEP&nbsp;
+                <input type="text" size="10" maxlength="8" name="txt_cep_tom" class="txt"
+                       onkeypress="return parent.gbl.sonum2(event)"
+                       onchange="if(document.frm.sel_cnpj_cpf_tom.value=='F')document.frm.txt_inscr_municipal_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="this.value=acerta_texto(this.value);this.style.backgroundColor='white'">
+                <span style="width:20px"></span>
+                <input type="checkbox" name="chk_tomador_fora_tom"
+                       onclick="if(this.checked){document.frm.txt_codg_municipio_tom.value='9999999';document.frm.txt_nome_municipio_tom.value='FORA DO BRASIL';document.frm.txt_codg_municipio_tom.disabled=true;document.frm.txt_nome_municipio_tom.disabled=true}else{document.frm.txt_codg_municipio_tom.value='25300';document.frm.txt_nome_municipio_tom.value='GOI�NIA';document.frm.txt_codg_municipio_tom.disabled=false;document.frm.txt_nome_municipio_tom.disabled=false}"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">&nbsp;Tomador
+                residente fora do Brasil
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Munic�pio</td>
+            <td>
+                <input type="text" size="8" maxlength="7" name="txt_codg_municipio_tom" class="txt" value="25300"
+                       onkeypress="return parent.gbl.sonum2(event)"
+                       onchange="document.frm.txt_nome_municipio_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                <input type="button" style="font-size:11px" value="Consultar" onclick="consultar_codg_municipio1()">
+            </td>
+            <td nowrap="">
+                &nbsp;&nbsp;Nome&nbsp;
+                <input type="text" size="47" maxlength="40" name="txt_nome_municipio_tom" class="txt" value="GOI�NIA"
+                       onkeypress="return parent.gbl.sonumletrah2(event)"
+                       onchange="document.frm.txt_codg_municipio_tom.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                <a href="javascript:consultar_nome_municipio1()"><img src="/sistemas/saces/imagem/localiza.gif"
+                                                                      border="0" alt="Consulta por nome"></a>
+                &nbsp;&nbsp;UF&nbsp;
+                <input type="text" name="txt_uf_tom" size="3" class="txt" value="GO" disabled="">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="4" bgcolor="#DDDDDD"></td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td valign="top"><font face="verdana" color="darkblue"><b>SERVI�O</b></font></td>
+            <td>Data <span id="dt_tit">da Emiss�o</span></td>
+            <td colspan="2">
+                <input type="text" size="12" maxlength="10" name="txt_data_emissao_not" class="txt" value="01/03/2024"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="validadata(this.name);this.style.backgroundColor='white'" disabled="">
+                <span style="width:125px"></span>
+                <input type="checkbox" name="chk_prestado_fora_not"
+                       onclick="if(this.checked){document.frm.txt_codg_municipio_not.value='9999999';document.frm.txt_nome_municipio_not.value='FORA DO BRASIL';document.frm.txt_codg_municipio_not.disabled=true;document.frm.txt_nome_municipio_not.disabled=true}else{document.frm.txt_codg_municipio_not.value='25300';document.frm.txt_nome_municipio_not.value='GOI�NIA';document.frm.txt_codg_municipio_not.disabled=false;document.frm.txt_nome_municipio_not.disabled=false}"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">&nbsp;Servi�o
+                prestado fora do Brasil
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Munic�pio do Servi�o</td>
+            <td>
+                <input type="text" size="8" maxlength="7" name="txt_codg_municipio_not" class="txt" value="25300"
+                       onkeypress="return parent.gbl.sonum2(event)"
+                       onchange="define_modalidade_situacao();calcula_base();document.frm.txt_nome_municipio_not.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                <input type="button" style="font-size:11px" value="Consultar" onclick="consultar_codg_municipio2()">
+            </td>
+            <td nowrap="">
+                &nbsp;&nbsp;Nome&nbsp;
+                <input type="text" size="47" maxlength="40" name="txt_nome_municipio_not" class="txt" value="GOI�NIA"
+                       onkeypress="return parent.gbl.sonumletrah2(event)"
+                       onchange="document.frm.txt_codg_municipio_not.value=''"
+                       onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                <a href="javascript:consultar_nome_municipio2()"><img src="/sistemas/saces/imagem/localiza.gif"
+                                                                      border="0" alt="Consulta por nome"></a>
+                &nbsp;&nbsp;UF&nbsp;
+                <input type="text" name="txt_uf_not" size="3" class="txt" value="GO" disabled="">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td nowrap="">Atividade Econ�mica&nbsp;&nbsp;</td>
+            <td colspan="2">
+                <select name="sel_codg_atividade_not" class="txt" style="width:697px"
+                        onchange="define_modalidade_situacao();calcula_base();trata_atv()"
+                        onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                    <option value=""></option>
+                    <option value="620400000">Consultoria em tecnologia da informacao</option>
+                    <option value="749010400">Atividades de intermediacao e agenciamento de servicos e negocios em
+                        geral, exceto imobiliarios
+                    </option>
+                    <option value="631190000">Tratamento de dados, provedores de servicos de aplicacao e servicos de
+                        hospedagem na internet
+                    </option>
+                    <option value="859960300">Treinamento em informatica</option>
+                    <option value="620310000">Desenvolvimento e licenciamento de programas de computador
+                        nao-customizaveis
+                    </option>
+                    <option value="620910000">Suporte tecnico, manutencao e outros servicos em tecnologia da
+                        informacao
+                    </option>
+                    <option value="829110000">Atividades de cobranca e informacoes cadastrais</option>
+                    <option value="620230000">Desenvolvimento e licenciamento de programas de computador customizaveis
+                    </option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td valign="top">Discrimina��o<br><span style="font-size:11px;color:Gray">Tam</span>&nbsp;<span id="qtd_dsc"
+                                                                                                            style="font-size:11px;color:Gray">0</span>
+            </td>
+            <td colspan="2"><textarea cols="135" rows="4" name="txt_discriminacao_not" class="txt"
+                                      style="font-family:Arial;font-size:12px"
+                                      onkeyup="document.getElementById('qtd_dsc').innerText=this.value.length"
+                                      onfocus="this.style.backgroundColor='lightyellow'"
+                                      onblur="if(this.value.length>2000){alert('Excedida a quantidade m�xima de CARACTERES na Discrimina��o! (m�x. 2000)');this.focus()}else{this.value=acerta_textarea(this.value,22)};this.style.backgroundColor='white'"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td valign="top" nowrap="">Informa��es Adicionais&nbsp;<br><span
+                    style="font-size:11px;color:Gray">Tam</span>&nbsp;<span id="qtd_inf"
+                                                                            style="font-size:11px;color:Gray">0</span>
+            </td>
+            <td colspan="2"><textarea cols="135" rows="2" name="txt_info_adicional_not" class="txt"
+                                      style="font-family:Arial;font-size:12px"
+                                      onkeyup="document.getElementById('qtd_inf').innerText=this.value.length"
+                                      onfocus="this.style.backgroundColor='lightyellow'"
+                                      onblur="if(this.value.length>250){alert('Excedida a quantidade m�xima de CARACTERES nas Informa��es Adicionais! (m�x. 250)');this.focus()}else{this.value=acerta_textarea(this.value,4)};this.style.backgroundColor='white'"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Valor do Servi�o</td>
+            <td colspan="2">
+                R$&nbsp;<input type="text" size="15" maxlength="17" name="txt_valr_servicos_not" class="txt_vlr"
+                               value=""
+                               onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                               onfocus="this.style.backgroundColor='lightyellow'"
+                               onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);calcula_base();this.style.backgroundColor='white'">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="width:70px;">Desconto</span>&nbsp;R$
+                <input type="text" size="15" maxlength="10" name="txt_valr_desconto_not" class="txt_vlr" value=""
+                       onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);calcula_base();this.style.backgroundColor='white'">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><span style="width:100px;">Valor da Nota</span>&nbsp;R$
+            </b><input type="text" size="15" maxlength="17" name="txt_valr_nota_not" class="txt_vlr" value=""
+                       disabled="">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Base de C�lculo</td>
+            <td colspan="2" nowrap="">
+                R$&nbsp;<span><input id="red" type="text" size="15" maxlength="17" name="txt_valr_base_not"
+                                     class="txt_vlr" value=""
+                                     onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                                     onfocus="this.style.backgroundColor='lightyellow'"
+                                     onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);calcula_deducao();this.style.backgroundColor='white'"
+                                     disabled=""></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="width:70px;">Dedu��es</span>&nbsp;R$
+                <input type="text" size="15" maxlength="17" name="txt_valr_deducoes_not" class="txt_vlr" value="0,00"
+                       onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                       onfocus="this.style.backgroundColor='lightyellow'"
+                       onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);calcula_base();this.style.backgroundColor='white'"
+                       disabled="">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Al�quota&nbsp;
+                <span id="alq" style="display:none">
+        <input type="text" size="6" maxlength="4" name="sel_info_aliquota_not" class="txt_vlr" value=""
+               onfocus="this.style.backgroundColor='lightyellow'"
+               onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.style.backgroundColor='white'"
+               onkeypress="parent.gbl.formatavalor2(this, event);return parent.gbl.sonum2(event);">
+                    <!-- select name="sel_info_aliquota_not" style="font-size:11px" onfocus="this.style.backgroundColor='lightyellow'" onblur="this.style.backgroundColor='white'">
+                      <option value="" selected></option>
+                      <option value="2,00">2,00</option>
+                      <option value="2,79">2,79</option>
+                      <option value="3,50">3,50</option>
+                      <option value="3,84">3,84</option>
+                      <option value="3,87">3,87</option>
+                      <option value="4,23">4,23</option>
+                      <option value="4,26">4,26</option>
+                      <option value="4,31">4,31</option>
+                      <option value="4,61">4,61</option>
+                      <option value="4,65">4,65</option>
+                      <option value="5,00">5,00</option>
+                    </select -->
+      </span>
+                <span id="alq1" style="display:inline;font-family:verdana;font-size:9pt"></span>
+                <b>&nbsp;%</b>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td colspan="2" nowrap="">
+                Reten��es Federais&nbsp;
+                &nbsp;PIS&nbsp;<input type="text" size="10" maxlength="17" name="txt_valr_PIS_not" class="txt_vlr"
+                                      value=""
+                                      onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                                      onfocus="this.style.backgroundColor='lightyellow'"
+                                      onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);this.style.backgroundColor='white'">
+                &nbsp;COFINS&nbsp;<input type="text" size="10" maxlength="17" name="txt_valr_COFINS_not" class="txt_vlr"
+                                         value=""
+                                         onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                                         onfocus="this.style.backgroundColor='lightyellow'"
+                                         onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);this.style.backgroundColor='white'">
+                &nbsp;INSS&nbsp;<input type="text" size="10" maxlength="17" name="txt_valr_INSS_not" class="txt_vlr"
+                                       value=""
+                                       onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                                       onfocus="this.style.backgroundColor='lightyellow'"
+                                       onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);this.style.backgroundColor='white'">
+                &nbsp;IR&nbsp;<input type="text" size="10" maxlength="17" name="txt_valr_IR_not" class="txt_vlr"
+                                     value=""
+                                     onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                                     onfocus="this.style.backgroundColor='lightyellow'"
+                                     onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);this.style.backgroundColor='white'">
+                &nbsp;CSLL&nbsp;<input type="text" size="10" maxlength="17" name="txt_valr_CSLL_not" class="txt_vlr"
+                                       value=""
+                                       onkeypress="parent.gbl.formatavalor2(this, event);this.value=retirazerosesq(this.value);return parent.gbl.sonum2(event);"
+                                       onfocus="this.style.backgroundColor='lightyellow'"
+                                       onblur="if(this.value!='')this.value=parent.gbl.formatavlr(this.value.replace('.','').replace('.',''));this.value=retirazerosesq(this.value);this.style.backgroundColor='white'">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="4" bgcolor="#DDDDDD"></td>
+        </tr>
+        <tr>
+            <td colspan="4"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="button" value="Gerar&nbsp;&nbsp;&nbsp;NFS-e" onclick="gera_NFSE()">
+                <input type="button" value="Limpar" onclick="limpar()">
+            </td>
+            <td colspan="2">
+                <table cellpadding="0" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <td nowrap="">
+                            <input type="checkbox" name="chk_mostrarNF" value="" checked="">&nbsp;Mostrar Nota
+                            &nbsp;&nbsp;
+                            Modalidade&nbsp;<b><span id="modalidade"
+                                                     style="width:160px;font-size:12px;color:brown"></span></b>
+                        </td>
+                        <td>&nbsp;&nbsp;Situa��o&nbsp;</td>
+                        <td><b><span id="situacaoNF" style="font-size:12px;color:brown"></span><br><span id="situacaoST"
+                                                                                                         style="font-size:12px;color:brown"></span></b>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const input = document.querySelector('input[name="txt_cnpj_cpf_tom"]');
+
+        if (input) {
+          // Add a blur event listener to the input
+          input.addEventListener('blur', function () {
+            console.log("what")
+            // Get the current value of the input
+            let inputValue = this.value;
+            // Remove any characters that are not digits
+            let cleanedInputValue = inputValue.replace(/\D/g, '');
+            // Update the input's value with the cleaned string
+            this.value = cleanedInputValue;
+          });
+        }
+
+
+
+
+
+      });
+
+      class InitializeAutofill {
+        constructor(frame, doc) {
+          this.frame = frame;
+          this.doc = document;
+          let [invoiceValue, fillButton] = this.createValue()
+          this.invoiceValue = invoiceValue
+          this.fillButton = fillButton
+          this.isExecuting = false
+        }
+
+        createValue() {
+          const spanElement = this.doc.getElementById('nm_razao_social');
+          let self = this
+
+          const fillButton = this.doc.createElement('button');
+          fillButton.type = 'button';
+          fillButton.innerText = 'Preencher';
+
+          spanElement.parentNode.insertBefore(fillButton, spanElement.nextSibling);
+
+          const invoiceValue = this.doc.createElement('input');
+          invoiceValue.type = 'text';
+          invoiceValue.placeholder = 'Valor';
+
+          spanElement.parentNode.insertBefore(invoiceValue, spanElement.nextSibling);
+
+          invoiceValue.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+              this.executePromisses()
+            }
+          });
+
+          fillButton.addEventListener('click', () => {
+            this.executePromisses()
+          });
+
+          return [invoiceValue, fillButton]
+        }
+
+        executePromisses() {
+          if (this.isExecuting) {
+            alert("Espere o processo acabar!");
+            return;
+          }
+
+          if (this.invoiceValue.value === '') {
+            alert("Insira o valor da nota");
+            return;
+          }
+
+          this.isExecuting = true;
+          this.startTyping().then(() => {
+            this.isExecuting = false;
+          }).catch(error => {
+            console.error("An error occurred:", error);
+            this.isExecuting = false;
+          });
+        }
+
+        async startTyping() {
+          this.isExecuting = true
+
+          const fields = [
+            {
+              label: 'CNPJ',
+              value: '15660185000138',
+              attributeValue: 'txt_cnpj_cpf_tom',
+              element: 'input',
+              attribute: 'name',
+              function: 'type'
+            },
+            // {
+            //   label: 'Razão social',
+            //   value: 'Morpheus Software LTDA',
+            //   attributeValue: 'txt_razao_nome_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'endereço',
+            //   value: 'Av. Champagnat',
+            //   attributeValue: 'txt_endereco_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'número',
+            //   value: '583',
+            //   attributeValue: 'txt_numero_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'complemento',
+            //   value: 'Sala 201',
+            //   attributeValue: 'txt_complemento_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'bairro',
+            //   value: 'Praia da Costa',
+            //   attributeValue: 'txt_bairro_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'CEP',
+            //   value: '29100010',
+            //   attributeValue: 'txt_cep_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'cod municipio',
+            //   value: '586200',
+            //   attributeValue: 'txt_codg_municipio_tom',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'atividade economica',
+            //   value: 'Suporte tecnico, manutencao e outros servicos em tecnologia da informacao',
+            //   attributeValue: 'sel_codg_atividade_not',
+            //   element: 'select',
+            //   attribute: 'name',
+            //   function: 'select'
+            // },
+            // {
+            //   label: 'descricao',
+            //   value: 'SUPORTE TECNICO, MANUTENCAO E OUTROS SERVICOS EM TECNOLOGIA DA INFORMACAO',
+            //   attributeValue: 'txt_discriminacao_not',
+            //   element: 'textarea',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'valor do servico',
+            //   value: this.invoiceValue.value,
+            //   attributeValue: 'txt_valr_servicos_not',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // },
+            // {
+            //   label: 'example',
+            //   value: 'valueexample',
+            //   attributeValue: 'valueattribute',
+            //   element: 'input',
+            //   attribute: 'name',
+            //   function: 'type'
+            // }
+          ]
+
+          for (const item of fields) {
+            let element = this.constructSelector(item)
+            const speed = this.getRandomNumberBetween(20, 50);
+            console.log(speed);
+            switch (item.function) {
+              case 'type':
+                await this.simulateTyping(element, item.value, speed);
+                break;
+              case 'select':
+                this.selectOption(element, item.value);
+                break;
+              default:
+                throw new Error('Invalid case');
+            }
+
+
+          }
+        }
+
+        constructSelector(item){
+          return this.doc.querySelector(`${item.element}[${item.attribute}="${item.attributeValue}"]`)
+        }
+
+        async simulateTyping(target, text, typingSpeed) {
+          const element = typeof target === 'string' ? document.querySelector(target) : target;
+
+          if (!element || !(element instanceof HTMLInputElement || element instanceof HTMLTextAreaElement)) {
+            console.error('Target element is not valid or not found.');
+            return;
+          }
+
+          element.value = ''
+
+          const triggerKeyboardEvent = (type, char) => {
+            const event = new KeyboardEvent(type, {
+              key: char,
+              code: `Key${char.toUpperCase()}`,
+              keyCode: char.charCodeAt(0),
+              charCode: char.charCodeAt(0),
+              which: char.charCodeAt(0),
+              bubbles: true,
+            });
+            element.dispatchEvent(event);
+          };
+
+          for (let char of text) {
+            triggerKeyboardEvent('keydown', char);
+            triggerKeyboardEvent('keypress', char);
+
+            await new Promise(resolve => {
+              const delay = typingSpeed + Math.random() * 100;
+              setTimeout(() => {
+                element.value += char;
+                triggerKeyboardEvent('keyup', char);
+                element.dispatchEvent(new Event('input', { bubbles: true }));
+                resolve();
+              }, delay);
+            });
+          }
+        }
+
+        selectOption(target, optionText) {
+          const selectElement = typeof target === 'string' ? document.querySelector(target) : target;
+
+          if (!selectElement || selectElement.tagName !== 'SELECT') {
+            console.error('Select element not found or invalid target');
+            return;
+          }
+
+          let found = false;
+          for (const option of selectElement.options) {
+            console.debug("Option: ", option.text)
+            if (option.text === optionText) {
+              option.selected = true;
+              found = true;
+              break;
+            }
+          }
+
+          if (!found) {
+            console.warn(`Option with text "${optionText}" not found.`);
+            return;
+          }
+
+          selectElement.dispatchEvent(new Event('change', { bubbles: true }));
+        }
+
+        getRandomNumberBetween(min, max) {
+          return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+      }
+
+      const autofillInstance = new InitializeAutofill('John', 30);
+      // autofillInstance.start();
+
+    </script>
+</form>
+</body>
+</html>
